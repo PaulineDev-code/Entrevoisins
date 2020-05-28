@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
@@ -25,6 +26,15 @@ public class DetailActivity extends AppCompatActivity {
         Neighbour neighbour = DI.getNeighbourApiService().getNeighbourbyid(id);
         getSupportActionBar().setTitle(neighbour.getName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        TextView DetailAboutMe = findViewById(R.id.aboutMe);
+        DetailAboutMe.setText(neighbour.getAboutMe());
+
+        TextView DetailAddress = findViewById(R.id.address);
+        DetailAddress.setText(neighbour.getAddress());
+
+
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
