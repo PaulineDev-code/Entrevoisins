@@ -39,14 +39,10 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     }
 
     @Override
-    public void deleteFavorite(Neighbour neighbour) { favorites.remove(neighbour);
-
-    }
+    public void deleteFavorite(Neighbour favorite) { favorites.remove(favorite); }
 
     @Override
-    public void addFavorite(Neighbour neighbour) { favorites.add(neighbour);
-
-    }
+    public void addFavorite(Neighbour neighbour) { favorites.add(neighbour); }
 
     /**
      * {@inheritDoc}
