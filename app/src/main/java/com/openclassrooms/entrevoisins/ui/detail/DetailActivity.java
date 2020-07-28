@@ -12,12 +12,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
@@ -38,9 +36,9 @@ public class DetailActivity extends AppCompatActivity {
         Neighbour neighbour = DI.getNeighbourApiService().getNeighbourbyid(id);
         getSupportActionBar().setTitle(neighbour.getName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        boolean isFav = DI.getNeighbourApiService().isFavorite(neighbour);
 
-        /*CustomTarget<Bitmap> back = getResources().getDrawable(R.drawable.ic_detail_background) ;*/
-        /*ImageView avatar = (ImageView) findViewById(R.id.avatar);*/
+
         Glide.with(this).asBitmap().load(neighbour.getAvatarUrl()).into(new CustomTarget<Bitmap>() {
             @Override
             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
@@ -54,15 +52,15 @@ public class DetailActivity extends AppCompatActivity {
         } );
 
 
-
-
-
-
-
-
         TextView DetailName = findViewById(R.id.name);
         DetailName.setText(neighbour.getName());
         DetailName.setTextSize(25);
+        DetailName.setTextColor(0xFF000000);
+
+        TextView DetailAboutMeTitle = findViewById(R.id.aboutMeTitle);
+        DetailAboutMeTitle.setText("À propos de moi");
+        DetailAboutMeTitle.setTextSize(25);
+        DetailAboutMeTitle.setTextColor(0xFF000000);
 
         TextView DetailAboutMe = findViewById(R.id.aboutMe);
         DetailAboutMe.setText(neighbour.getAboutMe());
@@ -74,20 +72,26 @@ public class DetailActivity extends AppCompatActivity {
         DetailPhone.setText(neighbour.getPhoneNumber());
 
 
-
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        if (isFav) { fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_star_border_white_24dp));}
+        else {fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_star_white_24dp));}
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Added to favorites", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-                DI.getNeighbourApiService().addFavorite(neighbour);
+                boolean isFavOnClick = DI.getNeighbourApiService().isFavorite(neighbour);
+                if (isFavOnClick) {
+                    Snackbar.make(view, "Removed from favorites", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    DI.getNeighbourApiService().deleteFavorite(neighbour);
+                    fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_star_white_24dp));
+                }
+                else {
+                    Snackbar.make(view, "Added to favorites", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    DI.getNeighbourApiService().addFavorite(neighbour);
+                    fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_star_border_white_24dp));
+                }
             }
-
-
-
         });
     }
 
