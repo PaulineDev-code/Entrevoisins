@@ -25,6 +25,8 @@ import com.openclassrooms.entrevoisins.model.Neighbour;
 
 public class DetailActivity extends AppCompatActivity {
 
+    private boolean isFav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,7 @@ public class DetailActivity extends AppCompatActivity {
         Neighbour neighbour = DI.getNeighbourApiService().getNeighbourbyid(id);
         getSupportActionBar().setTitle(neighbour.getName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        boolean isFav = DI.getNeighbourApiService().isFavorite(neighbour);
+        isFav = DI.getNeighbourApiService().isFavorite(neighbour);
 
 
         Glide.with(this).asBitmap().load(neighbour.getAvatarUrl()).into(new CustomTarget<Bitmap>() {
@@ -78,8 +80,8 @@ public class DetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isFavOnClick = DI.getNeighbourApiService().isFavorite(neighbour);
-                if (isFavOnClick) {
+                isFav = DI.getNeighbourApiService().isFavorite(neighbour);
+                if (isFav) {
                     Snackbar.make(view, "Removed from favorites", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     DI.getNeighbourApiService().deleteFavorite(neighbour);
