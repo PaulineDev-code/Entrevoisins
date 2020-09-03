@@ -3,6 +3,7 @@ package com.openclassrooms.entrevoisins.ui.favorites_list;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +23,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
+import java.util.Objects;
 
 
 public class FavoritesFragment extends Fragment {
@@ -37,8 +39,9 @@ public class FavoritesFragment extends Fragment {
 
 
     public static FavoritesFragment newInstance() {
-        FavoritesFragment fragment = new FavoritesFragment();
-        return fragment;
+//        FavoritesFragment fragment = new FavoritesFragment();
+//        return fragment;
+        return new FavoritesFragment();
     }
 
 
@@ -54,12 +57,12 @@ public class FavoritesFragment extends Fragment {
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getContext()), DividerItemDecoration.VERTICAL));
         return view;
     }
 
-
-    private void initList() {
+    @VisibleForTesting
+    public void initList() {
         favorites = mApiService.getFavorites();
         mRecyclerView.setAdapter(new MyFavoritesRecyclerViewAdapter(favorites));
     }
