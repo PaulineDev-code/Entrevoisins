@@ -11,6 +11,7 @@ import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -38,7 +39,7 @@ public class FavoriteServiceTest {
 
         List<Neighbour> expectedFavorites = new ArrayList<>();
         expectedFavorites.add(service.getNeighbours().get(2));
-        assertThat(favorites, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedFavorites.toArray()));
+        assertThat(favorites, IsIterableContainingInAnyOrder.containsInAnyOrder(Objects.requireNonNull(expectedFavorites.toArray())));
     }
 
     @Test
@@ -50,9 +51,9 @@ public class FavoriteServiceTest {
 
     @Test
     public void deleteFavoriteWithSuccess() {
+
         List<Neighbour> favorites = service.getFavorites();
         favorites.add(service.getNeighbours().get(2));
-
         Neighbour favoriteToDelete = service.getNeighbours().get(2);
 //        assertTrue(service.getFavorites().contains(favoriteToDelete));
         service.deleteFavorite(favoriteToDelete);
