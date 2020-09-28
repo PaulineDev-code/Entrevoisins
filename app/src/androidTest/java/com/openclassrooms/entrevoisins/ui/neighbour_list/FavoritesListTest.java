@@ -32,12 +32,13 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class FabTest {
+public class FavoritesListTest {
 
     private static int ITEMS_COUNT = 2;
 
@@ -45,10 +46,13 @@ public class FabTest {
     public ActivityTestRule<ListNeighbourActivity> mActivityTestRule = new ActivityTestRule<>(ListNeighbourActivity.class);
 
     @Test
-    public void fabTest() {
+    public void fabTest() throws InterruptedException {
         ViewInteraction recyclerView = onView(withId(R.id.list_neighbours));
 
         recyclerView.perform(actionOnItemAtPosition(1, click()));
+        ViewInteraction detailViewName = onView(withId(R.id.name));
+        detailViewName.check(matches(withText("Jack")));
+        Thread.sleep(300);
         //go to detail view
 
         ViewInteraction floatingActionButton = onView(withId(R.id.fab));
@@ -63,7 +67,13 @@ public class FabTest {
         viewPager.perform(swipeRight());
         //We go back to Neighbours list and ensure we're in the recyclerview
 
+        //We add a 2nd neighbour to favorites check his name and delete it then check it isn't in the list anymore
         recyclerView.perform(actionOnItemAtPosition(3, click()));
+
+        detailViewName.check(matches(isDisplayed()));
+        detailViewName.check(matches(withText("Vincent")));
+        Thread.sleep(200);
+
         floatingActionButton.perform(click());
 
         appCompatImageButton.perform(click());

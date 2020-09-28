@@ -2,17 +2,13 @@ package com.openclassrooms.entrevoisins.events;
 
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
+/**
+ * Event fired when a user deletes a Favorite
+ */
 public class DeleteFavoriteEvent {
 
-
-
-    /**
-     * Event fired when a user deletes a Neighbour
-     */
-
-
         /**
-         * Neighbour to delete
+         * Favorite to delete
          */
         public Neighbour favorite;
 

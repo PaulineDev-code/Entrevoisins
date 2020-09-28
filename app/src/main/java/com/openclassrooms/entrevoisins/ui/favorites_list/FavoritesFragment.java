@@ -39,8 +39,7 @@ public class FavoritesFragment extends Fragment {
 
 
     public static FavoritesFragment newInstance() {
-//        FavoritesFragment fragment = new FavoritesFragment();
-//        return fragment;
+
         return new FavoritesFragment();
     }
 
