@@ -14,7 +14,7 @@ public class DeleteFavoriteEvent {
 
         /**
          * Constructor.
-         * @param favorite
+         * @param favorite model
          */
         public DeleteFavoriteEvent(Neighbour favorite) { this.favorite = favorite;
         }

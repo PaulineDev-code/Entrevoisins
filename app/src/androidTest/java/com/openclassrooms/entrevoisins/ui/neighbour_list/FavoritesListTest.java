@@ -1,6 +1,7 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 
+import android.support.test.espresso.Espresso;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
@@ -52,7 +53,7 @@ public class FavoritesListTest {
         recyclerView.perform(actionOnItemAtPosition(1, click()));
         ViewInteraction detailViewName = onView(withId(R.id.name));
         detailViewName.check(matches(withText("Jack")));
-        Thread.sleep(300);
+        Thread.sleep(200);
         //go to detail view
 
         ViewInteraction floatingActionButton = onView(withId(R.id.fab));
@@ -60,8 +61,9 @@ public class FavoritesListTest {
         floatingActionButton.perform(click());
         //add to favorites and check if the button is displayed
 
-        ViewInteraction appCompatImageButton = onView(withContentDescription("Revenir en haut de la page"));
-        appCompatImageButton.perform(click());
+        Espresso.pressBack();
+//        ViewInteraction appCompatImageButton = onView(withContentDescription("Revenir en haut de la page"));
+//        appCompatImageButton.perform(click());
 
         ViewInteraction viewPager = onView(withId(R.id.container));
         viewPager.perform(swipeRight());
@@ -76,7 +78,8 @@ public class FavoritesListTest {
 
         floatingActionButton.perform(click());
 
-        appCompatImageButton.perform(click());
+        Espresso.pressBack();
+//        appCompatImageButton.perform(click());
 
         viewPager.perform(swipeLeft());
 

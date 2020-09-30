@@ -12,6 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -31,9 +32,10 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout backGround = findViewById(R.id.toolbar_layout);
+        ImageView image_view = findViewById(R.id.image_view);
         long id = getIntent().getLongExtra("id", -1);
         Neighbour neighbour = DI.getNeighbourApiService().getNeighbourbyid(id);
         getSupportActionBar().setTitle(neighbour.getName());
@@ -41,17 +43,19 @@ public class DetailActivity extends AppCompatActivity {
         isFav = DI.getNeighbourApiService().isFavorite(neighbour);
 
 
-        Glide.with(this).asBitmap().load(neighbour.getAvatarUrl()).into(new CustomTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                backGround.setBackground(new BitmapDrawable(getResources() , resource));
-            }
+//        Glide.with(this).asBitmap().load(neighbour.getAvatarUrl()).into(new CustomTarget<Bitmap>() {
+//            @Override
+//            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+//                backGround.setBackground(new BitmapDrawable(getResources() , resource));
+//            }
+//
+//            @Override
+//            public void onLoadCleared(@Nullable Drawable placeholder) {
+//
+//            }
+//        } );
 
-            @Override
-            public void onLoadCleared(@Nullable Drawable placeholder) {
-
-            }
-        } );
+        Glide.with(this).load(neighbour.getAvatarUrl()).into(image_view);
 
 
         TextView DetailName = findViewById(R.id.name);
@@ -74,7 +78,7 @@ public class DetailActivity extends AppCompatActivity {
         DetailPhone.setText(neighbour.getPhoneNumber());
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab =  findViewById(R.id.fab);
         if (isFav) { fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_star_border_white_24dp));}
         else {fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_star_white_24dp));}
         fab.setOnClickListener(new View.OnClickListener() {
