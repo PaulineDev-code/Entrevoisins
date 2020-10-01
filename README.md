@@ -9,7 +9,7 @@ P3 application Entrevoisins
 
 Installer l'application et son environnement:
 
-- Sur le site github -> https://github.com/PaulineDev-code/Entrevoisins , cliquez sur le bouton -> "clone or download" s puis cliquez sur -> "download zip"
+- Sur le site github -> https://github.com/PaulineDev-code/Entrevoisins , cliquez sur le bouton -> "clone or download" puis cliquez sur -> "download zip"
 
 - Une fois le téléchargement effectué, dézippez le dossier(clic droit -> extraire ici) 
 
