@@ -20,4 +20,4 @@ Installer l'application et son environnement:
 
 Lancer l'application:
 
-- Une fois le projet entièrement chargé par Android Studio, cliquez sur la flèche verte -> run 'app' en haut à droite d'Android Studio ou utilisez le raccourcis Maj+F10
+- Une fois le projet entièrement chargé par Android Studio, cliquez sur la flèche verte -> run 'app' en haut à droite d'Android Studio ou utilisez le raccourcis Maj+F10 pour lancer l'application
