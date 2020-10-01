@@ -2,9 +2,9 @@
 
 Ce dépôt contient une mini-application pour le P3 du parcours **Grande École du Numérique**.
 
-Fichier READ ME
-
 P3 application Entrevoisins
+
+Fichier READ ME
 
 
 Installer l'application et son environnement:
