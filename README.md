@@ -7,6 +7,7 @@ Fichier READ ME
 P3 application Entrevoisins
 
 
+
 Installer l'application et son environnement:
 
 - Sur le site github -> https://github.com/PaulineDev-code/Entrevoisins , cliquez sur le bouton vert -> "Code" puis cliquez sur -> "Download ZIP"
@@ -16,6 +17,7 @@ Installer l'application et son environnement:
 - Lancez Android Studio ou installez-le depuis le lien suivant -> https://developer.android.com/studio
 
 - Ouvrez Android Studio puis sélectionnez -> "Open an existing Android Studio project", sélectionnez l'emplacement du dossier précédemment dézippé
+
 
 
 Lancer l'application:
