@@ -13,7 +13,7 @@ Installer l'application et son environnement:
 
 - Une fois le téléchargement effectué, dézippez le dossier(clic droit -> extraire ici) 
 
-- Lancez Android Studio ou installez-le grâce au lien suivant -> https://developer.android.com/studio
+- Lancez Android Studio ou installez-le depuis le lien suivant -> https://developer.android.com/studio
 
 - Ouvrez Android Studio puis sélectionnez -> "Open an existing Android Studio project", sélectionnez l'emplacement du dossier précédemment dézippé
 
